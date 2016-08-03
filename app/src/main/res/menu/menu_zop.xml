@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".MainActivity">
+
+    <item
+        app:showAsAction="withText|ifRoom"
+        android:title="@string/menu_zop_drive_to"
+        android:icon="@android:drawable/ic_menu_directions"
+        android:id="@+id/menu_zop_drive_to"/>
+
+    <item
+        app:showAsAction="withText|ifRoom"
+        android:title="@string/menu_zop_review"
+        android:icon="@android:drawable/star_big_off"
+        android:id="@+id/menu_zop_review"/>
+
+    <item
+        app:showAsAction="withText|ifRoom"
+        android:title="@string/menu_zop_call"
+        android:icon="@android:drawable/sym_action_call"
+        android:id="@+id/menu_zop_call"/>
+</menu>

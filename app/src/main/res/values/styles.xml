@@ -1,0 +1,13 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:activatedBackgroundIndicator">@drawable/list_activated_background</item>
+    </style>
+
+    <item name="BoxBackgroundThemeBrush" type="color">#ff00acee</item>
+    <item name="PageBackgroundThemeBrush" type="color">#363636</item>
+    <item name="EditBackgroundThemeBrush" type="color">#4A4A4A</item>
+    <item name="WhiteText" type="color">#ffffff</item>
+</resources>

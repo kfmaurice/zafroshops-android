@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="5dp"
+              android:paddingLeft="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/review_select"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:layout_marginTop="15dp"/>
+<RadioGroup
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/review_confirmation_group">
+
+    <RadioButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:layout_marginLeft="10dp"
+        android:text="@string/confirmation_know"
+        android:id="@+id/review_confirmation_know"/>
+    <RadioButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="@string/confirmation_been"
+        android:id="@+id/review_confirmation_been"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/review_rating">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/stare"
+            android:layout_marginRight="5dp"
+            android:onClick="setRating"
+            android:tag="1"
+            android:id="@+id/star_1"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/stare"
+            android:layout_marginRight="5dp"
+            android:onClick="setRating"
+            android:tag="2"
+            android:id="@+id/star_2"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/stare"
+            android:layout_marginRight="5dp"
+            android:onClick="setRating"
+            android:tag="3"
+            android:id="@+id/star_3"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/stare"
+            android:layout_marginRight="5dp"
+            android:onClick="setRating"
+            android:tag="4"
+            android:id="@+id/star_4"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/stare"
+            android:layout_marginRight="5dp"
+            android:onClick="setRating"
+            android:tag="5"
+            android:id="@+id/star_5"/>
+    </LinearLayout>
+</RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/review_comments"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"
+        android:labelFor="@+id/review_comments"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minLines="3"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/review_comments"/>
+
+</LinearLayout>

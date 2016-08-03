@@ -1,0 +1,88 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.1'
+    defaultConfig {
+        applicationId 'dynamite.zafroshops.app'
+        minSdkVersion 17
+        targetSdkVersion 23
+        versionCode 10
+        versionName "1.8.1"
+        multiDexEnabled = true
+    }
+    buildTypes {
+        debug {
+            Properties properties = new Properties()
+            properties.load(project.rootProject.file('debug.properties').newDataInputStream())
+            def temp = properties.getProperty('azure.site')
+
+            resValue "string", "azure_site_ref", temp
+            temp = properties.getProperty('azure.mskey')
+            resValue "string", "azure_mskey_ref", temp
+            temp = properties.getProperty('settings.iapkey')
+            resValue "string", "settings_iapkey", temp
+            temp = properties.getProperty('settings.debug')
+            resValue "bool", "settings_debug", temp
+            temp = properties.getProperty('azure.push.hub')
+            resValue "string", "azure_hub", temp
+            temp = properties.getProperty('azure.push.cs')
+            resValue "string", "azure_hub_cs", temp
+            temp = properties.getProperty('google.api')
+            resValue "string", "google_api_name", temp
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            Properties properties = new Properties()
+            properties.load(project.rootProject.file('release.properties').newDataInputStream())
+            def temp = properties.getProperty('azure.site')
+
+            resValue "string", "azure_site_ref", temp
+            temp = properties.getProperty('azure.mskey')
+            resValue "string", "azure_mskey_ref", temp
+            temp = properties.getProperty('settings.iapkey')
+            resValue "string", "settings_iapkey", temp
+            temp = properties.getProperty('settings.debug')
+            resValue "bool", "settings_debug", temp
+            temp = properties.getProperty('azure.push.hub')
+            resValue "string", "azure_hub", temp
+            temp = properties.getProperty('azure.push.cs')
+            resValue "string", "azure_hub_cs", temp
+            temp = properties.getProperty('google.api')
+            resValue "string", "google_api_name", temp
+        }
+    }
+
+    productFlavors {
+    }
+    lintOptions {
+        abortOnError false
+    }
+    productFlavors {
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.google.guava:guava:18.0'
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.microsoft.azure:azure-mobile-services-android-sdk:2.0.2-beta+'
+    compile 'com.google.android.gms:play-services-location:9.2.1'
+    compile 'com.google.android.gms:play-services-ads:9.2.1'
+    compile 'com.google.android.gms:play-services-gcm:9.2.1'
+    compile 'com.facebook.android:facebook-android-sdk:4.1.2'
+    compile 'com.microsoft.azure:azure-notifications-handler:1.0.1@jar'
+    compile 'com.microsoft.azure:notification-hubs-android-sdk:0.4@aar'
+    compile files('libs/TapItSDK.jar')
+    compile files('libs/FlurryAds-5.5.0.jar')
+    compile files('libs/FlurryAnalytics-5.5.0.jar')
+}
+repositories {
+    maven {
+        url "http://dl.bintray.com/microsoftazuremobile/SDK"
+    }
+}

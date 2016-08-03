@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:background="@color/PageBackgroundThemeBrush"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp"
+              tools:context=".AddZopFragment">
+
+    <include layout="@layout/loading"></include>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/itemZopAdd">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/new_title"
+        android:textColor="@android:color/white"
+        android:textSize="38dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="30dp"
+        android:maxLines="1"
+        android:singleLine="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/newZopValidation"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_name"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:labelFor="@+id/newZopName"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/EditBackgroundThemeBrush"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="1dp"
+        android:paddingLeft="1dp"
+        android:textColor="@android:color/white"
+        android:singleLine="true"
+        android:hint="@string/new_name_hint"
+        android:textColorHint="@color/WhiteText"
+        android:id="@+id/newZopName"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_type"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:labelFor="@+id/newZopType"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="1dp"
+        android:textColor="@android:color/white"
+        android:textSize="16dp"
+        android:id="@+id/newZopType">
+        </Spinner>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_country"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="16dp"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="1dp"
+        android:id="@+id/newZopCountry">
+    </Spinner>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_city"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:id="@+id/newZopCityLabel"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/EditBackgroundThemeBrush"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="1dp"
+        android:paddingLeft="1dp"
+        android:textColor="@android:color/white"
+        android:singleLine="true"
+        android:hint="@string/new_city_hint"
+        android:textColorHint="@color/WhiteText"
+        android:id="@+id/newZopCity"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_street"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:id="@+id/newZopStreetLabel"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:background="@color/EditBackgroundThemeBrush"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="1dp"
+            android:paddingLeft="1dp"
+            android:textColor="@android:color/white"
+            android:singleLine="true"
+            android:hint="@string/new_street_hint"
+            android:textColorHint="@color/WhiteText"
+            android:id="@+id/newZopStreet"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.20"
+            android:background="@color/EditBackgroundThemeBrush"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="1dp"
+            android:paddingLeft="1dp"
+            android:textColor="@android:color/white"
+            android:singleLine="true"
+            android:hint="@string/new_streetnumber_hint"
+            android:textColorHint="@color/WhiteText"
+            android:id="@+id/newZopStreetNumber"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_phonenumber"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:id="@+id/newZopPhoneNumberLabel"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:background="@color/EditBackgroundThemeBrush"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="1dp"
+            android:paddingLeft="1dp"
+            android:textColor="@android:color/white"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:textColorHint="@color/WhiteText"
+            android:enabled="false"
+            android:id="@+id/newZopPhoneCode"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:background="@color/EditBackgroundThemeBrush"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="5dp"
+            android:paddingLeft="1dp"
+            android:textColor="@android:color/white"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:hint="@string/new_phonenumber_hint"
+            android:textColorHint="@color/WhiteText"
+            android:id="@+id/newZopPhoneNumber"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/openings_edit"
+        android:onClick="editOpeningHours"
+        android:id="@+id/newZopOpeningsButton"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/services_edit"
+        android:onClick="editServices"
+        android:id="@+id/newZopServicesButton"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/new_details"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:labelFor="@+id/newZopDetails"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minLines="3"
+        android:background="@color/EditBackgroundThemeBrush"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="1dp"
+        android:paddingLeft="1dp"
+        android:textColor="@android:color/white"
+        android:hint="@string/new_details_hint"
+        android:textColorHint="@color/WhiteText"
+        android:id="@+id/newZopDetails"/>
+    </LinearLayout>
+
+</FrameLayout>

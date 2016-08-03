@@ -1,0 +1,6 @@
+﻿v1.1.0.0 - initial release
+v1.1.0.2 - improved geolocation
+v1.2     - stored location on first request
+         - enabled manual refresh of zops
+         - phone number on new zop
+         - additional services for zops
