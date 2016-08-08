@@ -7,7 +7,7 @@
     <item
         app:showAsAction="withText|ifRoom"
         android:title="@string/menu_zops_refresh"
-        android:icon="@android:drawable/stat_notify_sync_noanim"
+        android:icon="@android:drawable/ic_dialog_dialer"
         android:id="@+id/menu_zop_refresh"/>
 
 </menu>

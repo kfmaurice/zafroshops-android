@@ -33,13 +33,19 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -48,6 +54,7 @@ import dynamite.zafroshops.app.R;
 import dynamite.zafroshops.app.data.FullMobileZop;
 import dynamite.zafroshops.app.data.MobileOpeningHour;
 import dynamite.zafroshops.app.data.MobileOpeningHourData;
+import dynamite.zafroshops.app.data.MobileZop;
 import dynamite.zafroshops.app.data.MobileZopService;
 import dynamite.zafroshops.app.data.ZopServiceType;
 
@@ -90,6 +97,21 @@ public class ZopItemFragment extends Fragment {
         setHasOptionsMenu(true);
 
         final String id = getArguments().getString(ARG_ZOP_ID);
+        InputStream is = getResources().openRawResource(R.raw.zops);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+        ArrayList<MobileZop> zops = new ArrayList<>(Collections2.filter((ArrayList<MobileZop>) new Gson().fromJson(reader, new TypeToken<ArrayList<MobileZop>>() {
+        }.getType()), new Predicate<MobileZop>() {
+            @Override
+            public boolean apply(MobileZop input) {
+                return input.id == id;
+            }
+        }));
+        if (zops.size() == 1) {
+            zop = new FullMobileZop(zops.get(0));
+            setZop(getActivity());
+        }
+
         ArrayList<Pair<String, String>> parameters = new ArrayList<Pair<String, String>>() {{
                 add(new Pair<>("fullId", id));
             }};
@@ -106,20 +128,7 @@ public class ZopItemFragment extends Fragment {
                     zop = new Gson().fromJson(result, FullMobileZop.class);
                 }
 
-                if (zop != null && zop.Location != null && MainActivity.LastLocation != null) {
-                    float[] results = new float[1];
-                    Location.distanceBetween(MainActivity.LastLocation.Latitude, MainActivity.LastLocation.Longitude,
-                            zop.Location.Latitude, zop.Location.Longitude, results);
-                    zop.Distance = results[0] / 1000;
-                }
-
-                LinearLayout itemZop = (LinearLayout) activity.findViewById(R.id.itemZop);
-                RelativeLayout loader = (RelativeLayout) activity.findViewById(R.id.relativeLayoutLoader);
-                ArrayList<MobileOpeningHourData> ohs = zop.getGroupedOpeningHours();
-
-                if (ohs != null) {
-                    setLayout(activity.getLayoutInflater(), itemZop, zop, loader);
-                }
+                setZop(activity);
             }
 
             @Override
@@ -146,6 +155,23 @@ public class ZopItemFragment extends Fragment {
         setLayout(inflater, layout, zop, loader);
 
         return rootView;
+    }
+
+    private void setZop(Activity activity) {
+        if (zop != null && zop.Location != null && MainActivity.LastLocation != null) {
+            float[] results = new float[1];
+            Location.distanceBetween(MainActivity.LastLocation.Latitude, MainActivity.LastLocation.Longitude,
+                    zop.Location.Latitude, zop.Location.Longitude, results);
+            zop.Distance = results[0] / 1000;
+        }
+
+        LinearLayout itemZop = (LinearLayout) activity.findViewById(R.id.itemZop);
+        RelativeLayout loader = (RelativeLayout) activity.findViewById(R.id.relativeLayoutLoader);
+        ArrayList<MobileOpeningHourData> ohs = zop.getGroupedOpeningHours();
+
+        if (ohs != null) {
+            setLayout(activity.getLayoutInflater(), itemZop, zop, loader);
+        }
     }
 
     public static void setOpeningsList(ArrayList<MobileOpeningHourData> data, LinearLayout listContainer, LayoutInflater inflater, TextView label) {

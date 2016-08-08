@@ -20,6 +20,30 @@ public class FullMobileZop extends MobileZop {
     @SerializedName("confirmationDontCount")
     public int ConfirmationDontCount;
 
+    public FullMobileZop() {
+
+    }
+
+    public  FullMobileZop(MobileZop zop) {
+        super.id = zop.id;
+        super.Name = zop.Name;
+        super.Location = zop.Location;
+        super.CountryID = zop.CountryID;
+        super.City = zop.City;
+        super.Street = zop.Street;
+        super.StreetNumber = zop.StreetNumber;
+        super.PhoneNumber = zop.PhoneNumber;
+        super.Details = zop.Details;
+        super.Type = zop.Type;
+        super.Origin = zop.Origin;
+        super.CountryName = zop.CountryName;
+        super.CountryPhoneCode = zop.CountryPhoneCode;
+        super.Rating = zop.Rating;
+        super.Count = zop.Count;
+        super.Distance = zop.Distance;
+        super.DataVersion = zop.DataVersion;
+    }
+
     public ArrayList<MobileOpeningHourData> getGroupedOpeningHours()
     {
         ArrayList<MobileOpeningHourData> groupedOpeningHours = new ArrayList<>();
