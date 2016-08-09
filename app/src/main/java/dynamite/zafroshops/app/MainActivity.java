@@ -451,27 +451,15 @@ public class MainActivity extends AppCompatActivity
             LastLocation.Latitude = getDouble(preferences, StorageKeys.LATITUDE_KEY, 0);
             LastLocation.Longitude = getDouble(preferences, StorageKeys.LONGITUDE_KEY, 0);
         } else if (locationToggle) {
-            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                // TODO: Consider calling
-                //    ActivityCompat#requestPermissions
-                // here to request the missing permissions, and then overriding
-                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                //                                          int[] grantResults)
-                // to handle the case where the user grants the permission. See the documentation
-                // for ActivityCompat#requestPermissions for more details.
-                return;
-            }
             AndroidLastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient); // use telnet to fix currentZop
-            if (AndroidLastLocation != null) {
-                LastLocation = new LocationBase();
-                LastLocation.Latitude = AndroidLastLocation.getLatitude();
-                LastLocation.Longitude = AndroidLastLocation.getLongitude();
+            LastLocation = new LocationBase();
+            LastLocation.Latitude = AndroidLastLocation.getLatitude();
+            LastLocation.Longitude = AndroidLastLocation.getLongitude();
 
-                putDouble(editor, StorageKeys.LATITUDE_KEY, LastLocation.Latitude);
-                putDouble(editor, StorageKeys.LONGITUDE_KEY, LastLocation.Longitude);
-                editor.commit();
-                getAddress(false);
-            }
+            putDouble(editor, StorageKeys.LATITUDE_KEY, LastLocation.Latitude);
+            putDouble(editor, StorageKeys.LONGITUDE_KEY, LastLocation.Longitude);
+            editor.commit();
+            getAddress(false);
         }
     }
 
@@ -488,34 +476,35 @@ public class MainActivity extends AppCompatActivity
                     LastLocation.Town = preferences.getString(StorageKeys.TOWN_KEY, "");
                     LastLocation.Street = preferences.getString(StorageKeys.STREET_KEY, "");
                     LastLocation.StreetNumber = preferences.getString(StorageKeys.STREETNUMBER_KEY, "");
-                } else if (locationToggle) {
-                    List<Address> addresses = geocoder.getFromLocation(LastLocation.Latitude, LastLocation.Longitude, 1);
-
-                    if (addresses != null && addresses.size() > 0) {
-                        Address address = addresses.get(0);
-
-                        LastLocation.CountryCode = address.getCountryCode();
-                        LastLocation.Town = address.getLocality();
-
-                        if (address.getMaxAddressLineIndex() > 0) {
-                            String line = address.getAddressLine(0);
-
-                            if(line.compareTo(LastLocation.Town) < 0) {
-                                LastLocation.Street = line.replaceAll("(\\D+) \\d+.*", "$1");
-                                LastLocation.StreetNumber = line.replaceAll("\\D+ (\\d+.*)", "$1");
-                            }
-                        }
-
-                        editor.putString(StorageKeys.COUNTRY_KEY, LastLocation.CountryCode);
-                        editor.putString(StorageKeys.TOWN_KEY, LastLocation.Town);
-                        editor.putString(StorageKeys.STREET_KEY, LastLocation.Street);
-                        editor.putString(StorageKeys.STREETNUMBER_KEY, LastLocation.StreetNumber);
-                        editor.commit();
-                    }
-                } else {
-                    return null;
                 }
+            } else if (locationToggle) {
+                List<Address> addresses = geocoder.getFromLocation(LastLocation.Latitude, LastLocation.Longitude, 1);
+
+                if (addresses != null && addresses.size() > 0) {
+                    Address address = addresses.get(0);
+
+                    LastLocation.CountryCode = address.getCountryCode();
+                    LastLocation.Town = address.getLocality();
+
+                    if (address.getMaxAddressLineIndex() > 0) {
+                        String line = address.getAddressLine(0);
+
+                        if (line.compareTo(LastLocation.Town) < 0) {
+                            LastLocation.Street = line.replaceAll("(\\D+) \\d+.*", "$1");
+                            LastLocation.StreetNumber = line.replaceAll("\\D+ (\\d+.*)", "$1");
+                        }
+                    }
+
+                    editor.putString(StorageKeys.COUNTRY_KEY, LastLocation.CountryCode);
+                    editor.putString(StorageKeys.TOWN_KEY, LastLocation.Town);
+                    editor.putString(StorageKeys.STREET_KEY, LastLocation.Street);
+                    editor.putString(StorageKeys.STREETNUMBER_KEY, LastLocation.StreetNumber);
+                    editor.commit();
+                }
+            } else {
+                return null;
             }
+
             return LastLocation;
         } catch (IOException e) {
             return null;
