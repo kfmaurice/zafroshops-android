@@ -123,7 +123,7 @@ public class AllZopsGridViewAdapter extends ArrayAdapter<MobileZop> {
         }
         if (objects != null) {
             this.objects.addAll(objects);
-            Collections.sort(objects, ordering);
+            Collections.sort(this.objects, ordering);
         }
     }
 }
