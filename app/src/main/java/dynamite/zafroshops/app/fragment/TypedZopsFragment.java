@@ -146,7 +146,7 @@ public class TypedZopsFragment extends Fragment {
             }.getType()), new Predicate<MobileZop>() {
                 @Override
                 public boolean apply(MobileZop input) {
-                    return input.Type == type && (!preferences.contains(StorageKeys.COUNTRY_KEY) || preferences.getString(StorageKeys.COUNTRY_KEY, "") == "" || input.CountryID.equals(preferences.getString(StorageKeys.COUNTRY_KEY, "")));
+                    return input.Type == type && (!preferences.contains(StorageKeys.COUNTRY_KEY) || preferences.getString(StorageKeys.COUNTRY_KEY, "").equals("") || input.CountryID.equals(preferences.getString(StorageKeys.COUNTRY_KEY, "")));
                 }
             }));
 
@@ -177,7 +177,7 @@ public class TypedZopsFragment extends Fragment {
                 typedZops = new ArrayList<>(Collections2.filter(temp, new Predicate<MobileZop>() {
                     @Override
                     public boolean apply(MobileZop input) {
-                        return input.Type == type && (!preferences.contains(StorageKeys.COUNTRY_KEY) || preferences.getString(StorageKeys.COUNTRY_KEY, "") == "" || input.CountryID.equals(preferences.getString(StorageKeys.COUNTRY_KEY, "")));
+                        return input.Type == type && (!preferences.contains(StorageKeys.COUNTRY_KEY) || preferences.getString(StorageKeys.COUNTRY_KEY, "").equals("") || input.CountryID.equals(preferences.getString(StorageKeys.COUNTRY_KEY, "")));
                     }
                 }));
                 ois.close();
@@ -247,7 +247,7 @@ public class TypedZopsFragment extends Fragment {
                             typedZops = new ArrayList<>(Collections2.filter(temp, new Predicate<MobileZop>() {
                                 @Override
                                 public boolean apply(MobileZop input) {
-                                    return input.Type == type && (!preferences.contains(StorageKeys.COUNTRY_KEY) || preferences.getString(StorageKeys.COUNTRY_KEY, "") == "" || input.CountryID.equals(preferences.getString(StorageKeys.COUNTRY_KEY, "")));
+                                    return input.Type == type && (!preferences.contains(StorageKeys.COUNTRY_KEY) || preferences.getString(StorageKeys.COUNTRY_KEY, "").equals("") || input.CountryID.equals(preferences.getString(StorageKeys.COUNTRY_KEY, "")));
                                 }
                             }));
                             oos.writeObject(typedZops);
