@@ -104,7 +104,7 @@ public class ZopItemFragment extends Fragment {
         }.getType()), new Predicate<MobileZop>() {
             @Override
             public boolean apply(MobileZop input) {
-                return input.id == id;
+                return input.id.equals(id);
             }
         }));
         if (zops.size() == 1) {
@@ -215,7 +215,7 @@ public class ZopItemFragment extends Fragment {
 
         loader.setVisibility(View.VISIBLE);
         item.setVisibility(View.INVISIBLE);
-        if (zop != null && zop.id != null && zop.id.trim() != "") {
+        if (zop != null && zop.id != null && !zop.id.trim().equals("")) {
             MainActivity activity = (MainActivity) getActivity();
             (activity).setCurrentItem(zop.id, zop);
 
@@ -235,7 +235,7 @@ public class ZopItemFragment extends Fragment {
             for (Object s : zop.Services) {
                 ZopServiceType zopServiceType = ((MobileZopService)s).Service;
 
-                if (zopServiceType.toString() != zop.Type.toString()) {
+                if (!zopServiceType.toString().equals(zop.Type.toString())) {
                     setView(zopServiceType.toString(), zopServiceType.getText(), linearLayout, inflater);
                 }
             }
@@ -243,7 +243,7 @@ public class ZopItemFragment extends Fragment {
             if (zop.Distance > 0) {
                 ((TextView) item.findViewById(R.id.locatoin_km)).setText( " (" + String.format("%.0f", zop.Distance) + " " + getString(R.string.far_away) + ")");
             }
-            if(zop.PhoneNumber == null || zop.PhoneNumber.trim() == "") {
+            if(zop.PhoneNumber == null || zop.PhoneNumber.trim().equals("")) {
                 item.findViewById(R.id.zopPhoneNumberLabel).setVisibility(View.INVISIBLE);
             }
             else {
@@ -251,7 +251,7 @@ public class ZopItemFragment extends Fragment {
                 ((TextView) item.findViewById(R.id.zopPhoneNumber)).setText(zop.CountryPhoneCode + " " + zop.PhoneNumber);
             }
 
-            if(zop.Details == null || zop.Details.trim() == "") {
+            if(zop.Details == null || zop.Details.trim().equals("")) {
                 item.findViewById(R.id.zopDetailsLabel).setVisibility(View.INVISIBLE);
             }
             else {

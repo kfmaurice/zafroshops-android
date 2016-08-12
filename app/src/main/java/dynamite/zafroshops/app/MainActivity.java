@@ -452,14 +452,17 @@ public class MainActivity extends AppCompatActivity
             LastLocation.Longitude = getDouble(preferences, StorageKeys.LONGITUDE_KEY, 0);
         } else if (locationToggle) {
             AndroidLastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient); // use telnet to fix currentZop
-            LastLocation = new LocationBase();
-            LastLocation.Latitude = AndroidLastLocation.getLatitude();
-            LastLocation.Longitude = AndroidLastLocation.getLongitude();
 
-            putDouble(editor, StorageKeys.LATITUDE_KEY, LastLocation.Latitude);
-            putDouble(editor, StorageKeys.LONGITUDE_KEY, LastLocation.Longitude);
-            editor.commit();
-            getAddress(false);
+            if(AndroidLastLocation != null) {
+                LastLocation = new LocationBase();
+                LastLocation.Latitude = AndroidLastLocation.getLatitude();
+                LastLocation.Longitude = AndroidLastLocation.getLongitude();
+
+                putDouble(editor, StorageKeys.LATITUDE_KEY, LastLocation.Latitude);
+                putDouble(editor, StorageKeys.LONGITUDE_KEY, LastLocation.Longitude);
+                editor.commit();
+                getAddress(false);
+            }
         }
     }
 
@@ -781,7 +784,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.menu_zop_drive_to:
                 if(currentZop != null && currentZop.Location != null && currentZop.Location.Latitude != null) {
-                    Uri uri = Uri.parse(String.format("google.navigation:q=%f,%f", currentZop.Location.Latitude, currentZop.Location.Longitude));
+                    Uri uri = Uri.parse(String.format(Locale.US, "google.navigation:q=%f,%f", currentZop.Location.Latitude, currentZop.Location.Longitude));
                     Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
                     mapIntent.setPackage("com.google.android.apps.maps");
 
