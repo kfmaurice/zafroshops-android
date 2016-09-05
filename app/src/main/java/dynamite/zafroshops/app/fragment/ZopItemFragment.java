@@ -100,16 +100,15 @@ public class ZopItemFragment extends Fragment {
         InputStream is = getResources().openRawResource(R.raw.zops);
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
-        ArrayList<MobileZop> zops = new ArrayList<>(Collections2.filter((ArrayList<MobileZop>) new Gson().fromJson(reader, new TypeToken<ArrayList<MobileZop>>() {
-        }.getType()), new Predicate<MobileZop>() {
+        ArrayList<FullMobileZop> zops = new ArrayList<>(Collections2.filter((ArrayList<FullMobileZop>) new Gson().fromJson(reader, new TypeToken<ArrayList<FullMobileZop>>() {
+        }.getType()), new Predicate<FullMobileZop>() {
             @Override
-            public boolean apply(MobileZop input) {
+            public boolean apply(FullMobileZop input) {
                 return input.id.equals(id);
             }
         }));
         if (zops.size() == 1) {
-            zop = new FullMobileZop(zops.get(0));
-            setZop(getActivity());
+            zop = zops.get(0);
         }
 
         ArrayList<Pair<String, String>> parameters = new ArrayList<Pair<String, String>>() {{
@@ -133,10 +132,12 @@ public class ZopItemFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Throwable t) {
-                LinearLayout itemZop = (LinearLayout) activity.findViewById(R.id.itemZop);
-                RelativeLayout loader = (RelativeLayout) activity.findViewById(R.id.relativeLayoutLoader);
-                itemZop.setVisibility(View.INVISIBLE);
-                loader.setVisibility(View.VISIBLE);
+                if (zop == null) {
+                    LinearLayout itemZop = (LinearLayout) activity.findViewById(R.id.itemZop);
+                    RelativeLayout loader = (RelativeLayout) activity.findViewById(R.id.relativeLayoutLoader);
+                    itemZop.setVisibility(View.INVISIBLE);
+                    loader.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
@@ -231,6 +232,7 @@ public class ZopItemFragment extends Fragment {
 
             LinearLayout linearLayout = ((LinearLayout)item.findViewById(R.id.zopServiceIcons));
 
+            linearLayout.removeAllViews();
             setView(zop.Type.toString(), zop.Type.getText(), linearLayout, inflater);
             for (Object s : zop.Services) {
                 ZopServiceType zopServiceType = ((MobileZopService)s).Service;

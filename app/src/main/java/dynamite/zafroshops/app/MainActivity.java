@@ -450,6 +450,9 @@ public class MainActivity extends AppCompatActivity
             LastLocation = new LocationBase();
             LastLocation.Latitude = getDouble(preferences, StorageKeys.LATITUDE_KEY, 0);
             LastLocation.Longitude = getDouble(preferences, StorageKeys.LONGITUDE_KEY, 0);
+            if (locationToggle) {
+                getAddress(true);
+            }
         } else if (locationToggle) {
             AndroidLastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient); // use telnet to fix currentZop
 
@@ -474,13 +477,14 @@ public class MainActivity extends AppCompatActivity
 
         try {
             if (!force && LastLocation != null) {
-                if (preferences.contains(StorageKeys.COUNTRY_KEY)) {
+
+                if (preferences.contains(StorageKeys.COUNTRY_KEY) && !preferences.getString(StorageKeys.COUNTRY_KEY, "").equals("")) {
                     LastLocation.CountryCode = preferences.getString(StorageKeys.COUNTRY_KEY, "");
                     LastLocation.Town = preferences.getString(StorageKeys.TOWN_KEY, "");
                     LastLocation.Street = preferences.getString(StorageKeys.STREET_KEY, "");
                     LastLocation.StreetNumber = preferences.getString(StorageKeys.STREETNUMBER_KEY, "");
                 }
-            } else if (locationToggle) {
+            } else if (locationToggle && LastLocation != null) {
                 List<Address> addresses = geocoder.getFromLocation(LastLocation.Latitude, LastLocation.Longitude, 1);
 
                 if (addresses != null && addresses.size() > 0) {
@@ -728,6 +732,7 @@ public class MainActivity extends AppCompatActivity
                 }
 
                 if (addZopFragment.ValidateNewZop(newZop)) {
+                    addZopFragment.setMessage();
                     addZopFragment.setVisibility();
                     if (PushHandler.ids == null) {
                         PushHandler.ids = new ArrayList<>();

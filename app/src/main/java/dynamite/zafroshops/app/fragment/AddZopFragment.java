@@ -121,6 +121,7 @@ public class AddZopFragment extends Fragment {
     }
 
     public void setMessage() {
+        ((TextView)getView().findViewById(R.id.newZopValidation)).setText("");
         ((TextView)getView().findViewById(R.id.newZopValidation)).setText(errors);
     }
 
