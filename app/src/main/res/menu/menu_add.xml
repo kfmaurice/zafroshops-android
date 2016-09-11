@@ -10,4 +10,10 @@
         android:icon="@android:drawable/ic_input_add"
         android:id="@+id/new_zop_add"/>
 
+    <item
+        app:showAsAction="withText"
+        android:title="@string/menu_location_refresh"
+        android:icon="@android:drawable/stat_notify_sync_noanim"
+        android:id="@+id/menu_location_refresh"/>
+
 </menu>

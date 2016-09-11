@@ -72,6 +72,7 @@ public class TypedZopsFragment extends Fragment {
      */
     private static final String ARG_ZOP_TYPE = "zop_type";
     private static final String ARG_FORCE = "force";
+    private boolean force;
 
     private TypedZopListViewAdapter adapter;
     private int dataVersion;
@@ -109,7 +110,7 @@ public class TypedZopsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
 
-        boolean force = getArguments().getBoolean(ARG_FORCE, false);
+        force = getArguments().getBoolean(ARG_FORCE, false);
         MainActivity activity = (MainActivity)getActivity();
 
         if ((ZopType) getArguments().get(ARG_ZOP_TYPE) != null) {
@@ -127,7 +128,7 @@ public class TypedZopsFragment extends Fragment {
         }
     }
 
-    private void setZops(boolean force) {
+    private void setZops(final boolean force) {
         Activity activity = getActivity();
         adapter = new TypedZopListViewAdapter(getActivity(), R.id.listViewItem, typedZops);
         final SharedPreferences preferences = activity.getPreferences(0);
@@ -168,7 +169,7 @@ public class TypedZopsFragment extends Fragment {
             }
         }
 
-        if (!force && preferences.contains(key)) {
+        else if (preferences.contains(key)) {
             try {
                 FileInputStream fis = activity.openFileInput(key);
                 ObjectInputStream ois = new ObjectInputStream(fis);
@@ -196,10 +197,9 @@ public class TypedZopsFragment extends Fragment {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-
-            return;
         }
-        else {
+
+        if(force) {
             final ArrayList<Pair<String, String>> parameters;
             if (MainActivity.LastLocation != null) {
                 parameters = new ArrayList<Pair<String, String>>() {{
@@ -265,7 +265,7 @@ public class TypedZopsFragment extends Fragment {
 
                     if (adapter != null) {
                         adapter.setObjects(typedZops);
-                        setVisibility();
+                        resetVisibility(false);
                         adapter.notifyDataSetChanged();
                     }
                 }
@@ -276,9 +276,7 @@ public class TypedZopsFragment extends Fragment {
                     RelativeLayout loader = (RelativeLayout) activity.findViewById(R.id.relativeLayoutLoader);
                     LinearLayout noZops = (LinearLayout) activity.findViewById(R.id.noZops);
 
-                    zops.setVisibility(View.INVISIBLE);
-                    noZops.setVisibility(View.INVISIBLE);
-                    loader.setVisibility(View.VISIBLE);
+                    resetVisibility(zops, noZops, loader, false);
                 }
             });
         }
@@ -299,11 +297,7 @@ public class TypedZopsFragment extends Fragment {
 
         ListView listView = (ListView) rootView.findViewById(R.id.listViewZops);
 
-        if (adapter.getCount() > 0) {
-            rootView.findViewById(R.id.relativeLayoutLoader).setVisibility(View.INVISIBLE);
-        }
-        setVisibility(listView, (LinearLayout) rootView.findViewById(R.id.noZops), (RelativeLayout) rootView.findViewById(R.id.relativeLayoutLoader));
-
+        resetVisibility(listView, (LinearLayout) rootView.findViewById(R.id.noZops), (RelativeLayout) rootView.findViewById(R.id.relativeLayoutLoader), force);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -334,24 +328,16 @@ public class TypedZopsFragment extends Fragment {
         }
     }
 
-    private void setVisibility() {
+    private void resetVisibility(boolean showLoader) {
         Activity activity = getActivity();
         ListView zops = (ListView) activity.findViewById(R.id.listViewZops);
         LinearLayout noZops = (LinearLayout) activity.findViewById(R.id.noZops);
         RelativeLayout loader = (RelativeLayout) activity.findViewById(R.id.relativeLayoutLoader);
-        MainActivity mainActivity = (MainActivity)activity;
 
-        if (typedZops.size() == 0 && mainActivity.Counts.get(zopType) == 0) {
-            noZops.setVisibility(View.VISIBLE);
-            zops.setVisibility(View.INVISIBLE);
-        } else {
-            noZops.setVisibility(View.INVISIBLE);
-            zops.setVisibility(View.VISIBLE);
-        }
-        loader.setVisibility(View.INVISIBLE);
+        resetVisibility(zops, noZops, loader, showLoader);
     }
 
-    private void setVisibility(ListView zops, LinearLayout noZops, RelativeLayout loader) {
+    private void resetVisibility(ListView zops, LinearLayout noZops, RelativeLayout loader, boolean showLoader) {
         Activity activity = getActivity();
         MainActivity mainActivity = (MainActivity)activity;
 
@@ -362,6 +348,14 @@ public class TypedZopsFragment extends Fragment {
             noZops.setVisibility(View.INVISIBLE);
             zops.setVisibility(View.VISIBLE);
         }
-        loader.setVisibility(View.INVISIBLE);
+
+        if(showLoader) {
+            zops.setVisibility(View.INVISIBLE);
+            noZops.setVisibility(View.INVISIBLE);
+            loader.setVisibility(View.VISIBLE);
+        }
+        else {
+            loader.setVisibility(View.INVISIBLE);
+        }
     }
 }

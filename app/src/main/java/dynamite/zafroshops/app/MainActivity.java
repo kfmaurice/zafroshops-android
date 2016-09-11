@@ -300,7 +300,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onConnected(Bundle bundle) {
-        getLocation(false);
+        getLocation(true);
     }
 
     @Override
@@ -454,7 +454,7 @@ public class MainActivity extends AppCompatActivity
                 getAddress(true);
             }
         } else if (locationToggle) {
-            AndroidLastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient); // use telnet to fix currentZop
+            AndroidLastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
 
             if(AndroidLastLocation != null) {
                 LastLocation = new LocationBase();
@@ -464,7 +464,7 @@ public class MainActivity extends AppCompatActivity
                 putDouble(editor, StorageKeys.LATITUDE_KEY, LastLocation.Latitude);
                 putDouble(editor, StorageKeys.LONGITUDE_KEY, LastLocation.Longitude);
                 editor.commit();
-                getAddress(false);
+                getAddress(force);
             }
         }
     }
@@ -813,10 +813,14 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.menu_zop_refresh:
+                getLocation(true);
+                getAddress(true);
                 nextMenu(TypedZopsFragment.newInstance(TypedZopsFragment.zopType, true), false, 1);
                 break;
 
             case R.id.menu_zops_refresh:
+                getLocation(true);
+                getAddress(true);
                 nextMenu(AllZopsFragment.newInstance(position, true), false, 1);
                 break;
         }
