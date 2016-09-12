@@ -141,6 +141,7 @@ public class NavigationDrawerFragment extends Fragment {
         ((TextView)mContainer.findViewById(R.id.zafroshops_text)).setTypeface(indieFlower);
         ((TextView)mContainer.findViewById(R.id.email_text)).setTypeface(indieFlower);
         ((TextView)mContainer.findViewById(R.id.ads_text)).setTypeface(indieFlower);
+        ((TextView)mContainer.findViewById(R.id.help_text)).setTypeface(indieFlower);
 
         LikeView likeView = (LikeView)mContainer.findViewById(R.id.facebook_like);
         likeView.setObjectIdAndType(getString(R.string.zafroshops_fb_page), LikeView.ObjectType.PAGE);
