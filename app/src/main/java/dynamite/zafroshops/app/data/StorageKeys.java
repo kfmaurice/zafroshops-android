@@ -28,4 +28,5 @@ public class StorageKeys {
     public static final String ZOPCATEGORY_KEY = "zopcategory";
     public static final String ZOPS_KEY = "zops";
     public static final String LOCATION_TOGGLE_KEY = "locationtoggle";
+    public static final String HELP_TOGGLE_KEY = "helptoggle";
 }

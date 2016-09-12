@@ -98,6 +98,17 @@
     <string name="ads_interstitial_unit_id">ca-app-pub-2514964223223347/8475955710</string>
     <string name="facebook_app_id">293384604174089</string>
     <string name="no_call_allowed">The application is not allowed to make calls</string>
+    <string name="help_msg_1">Thank you for using Zafroshops, the number one application for referencing afroshops around the world.\n\nWith this app you can see all afroshops (zops) referenced in your country.
+        To do that, use the blue navigation drawer menu by tapping on the top left part of the app\n</string>
+    <string name="help_msg_2">\nTo see all zops tap on \"All Zops\". The zops are first shown as categories e.g shops, bar, associations, …\n</string>
+    <string name="help_msg_3">\nAfter selecting a category, you would see all zops for this category only.
+        \n\nIf you feel, there is a zop you know and which is not referenced here, go to the menu and tap on \"Add a zop\". You\'ll be displayed a form to fill the zop data. Fill up the name and address at least. But, we\'ll be glad if you provide more infos like phone number, opening hours or additional services as these will help app users find the zop more easily.
+        \n\nWe wish you a lot of fun with Zafroshops :-)\n
+    </string>
+    <string name="help_ok">OK</string>
+    <string name="help_title">Help</string>
+    <string name="help_toggle">Don\'t show this message again</string>
+    <string name="help_text">help</string>
 
     <string name="azure_site">@string/azure_site_ref</string>
     <string name="azure_mobile_service_app_key">@string/azure_mskey_ref</string>

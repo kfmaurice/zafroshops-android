@@ -76,6 +76,7 @@ import java.util.regex.Pattern;
 
 import dynamite.zafroshops.app.data.MobileZop;
 import dynamite.zafroshops.app.data.ZopType;
+import dynamite.zafroshops.app.fragment.HelpDialogFragment;
 import dynamite.zafroshops.app.iap.IabHelper;
 import dynamite.zafroshops.app.data.FullMobileZop;
 import dynamite.zafroshops.app.data.LocationBase;
@@ -265,6 +266,7 @@ public class MainActivity extends AppCompatActivity
         Versions = new Hashtable<>();
         Counts = new Hashtable<>();
         setDataVersion();
+        openHelpDialog(null);
     }
 
     public void registerWithNotificationHubs()
@@ -384,8 +386,6 @@ public class MainActivity extends AppCompatActivity
 
     public void onNavigationDrawerItemSelected(int position, boolean addToStack) {
         // update the main content by replacing fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = null;
 
         switch (position) {
             case 0: // all zops
@@ -436,7 +436,6 @@ public class MainActivity extends AppCompatActivity
 
     private void requestNewInterstitial() {
         AdRequest adRequest = new AdRequest.Builder()
-//                .addTestDevice("SEE_YOUR_LOGCAT_TO_GET_YOUR_DEVICE_ID")
                 .build();
         Interstitial.loadAd(adRequest);
     }
@@ -661,6 +660,16 @@ public class MainActivity extends AppCompatActivity
 
         i.setData(Uri.parse(uri));
         startActivity(Intent.createChooser(i, getString(R.string.email_us)));
+    }
+
+    public void openHelpDialog(View view) {
+        SharedPreferences preferences = getPreferences(0);
+        boolean helpToggle = preferences.getBoolean(StorageKeys.HELP_TOGGLE_KEY, false);
+
+        if(!helpToggle || view != null) {
+            HelpDialogFragment dialog = new HelpDialogFragment();
+            dialog.show(getSupportFragmentManager(), "help");
+        }
     }
 
     private void setDataVersion() {
