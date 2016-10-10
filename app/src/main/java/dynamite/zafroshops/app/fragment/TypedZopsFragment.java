@@ -23,6 +23,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -79,6 +80,8 @@ public class TypedZopsFragment extends Fragment {
     public ArrayList<MobileZop> typedZops;
     public static ZopType zopType;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     /**
      * Returns a new instance of this fragment for the given section
      * number.
@@ -99,9 +102,20 @@ public class TypedZopsFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        MainActivity activity = (MainActivity)getActivity();
+        final MainActivity activity = (MainActivity)getActivity();
         activity.getMenuInflater().inflate(R.menu.menu_typed, menu);
         activity.restoreActionBar();
+
+        // swipe to refresh
+        swipeRefreshLayout = (SwipeRefreshLayout) activity.findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                activity.refresh();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
         super.onCreateOptionsMenu(menu, inflater);
     }
 

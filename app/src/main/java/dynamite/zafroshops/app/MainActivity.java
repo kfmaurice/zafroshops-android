@@ -33,6 +33,7 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.FragmentManager;
@@ -690,6 +691,12 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    public void refresh(){
+        getLocation(true);
+        getAddress(true);
+        nextMenu(TypedZopsFragment.newInstance(TypedZopsFragment.zopType, true), false, 1);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
@@ -822,9 +829,7 @@ public class MainActivity extends AppCompatActivity
                 break;
 
             case R.id.menu_zop_refresh:
-                getLocation(true);
-                getAddress(true);
-                nextMenu(TypedZopsFragment.newInstance(TypedZopsFragment.zopType, true), false, 1);
+                refresh();
                 break;
 
             case R.id.menu_zops_refresh:
