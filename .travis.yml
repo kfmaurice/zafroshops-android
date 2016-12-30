@@ -1,12 +1,4 @@
 language: java
 jdk: oraclejdk8
 android:
-  components:
-	- build-tools-24.0.1
-#env:
- # global:
-  #  - ANDROID_HOME=${TRAVIS_BUILD_DIR}/android-sdk
-   # - PATH=${ANDROID_HOME}/:${ANDROID_HOME}/tools/:${ANDROID_HOME}/platform-tools/:${PATH}
-
-#before_install:
- # - cp -R /usr/local/android-sdk-24.0.1 ./android-sdk
+  components: build-tools-24.0.1
