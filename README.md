@@ -1,4 +1,6 @@
 # zafroshops-android
+[![Build Status](https://travis-ci.org/kfmaurice/zafroshops-android.svg?branch=master)](https://travis-ci.org/kfmaurice/zafroshops-android)
+
 This repository contains the code to the android application for the Zafroshops project.
 
 <img src="https://raw.githubusercontent.com/kfmaurice/zafroshops-media/master/Images/Android/android_2.png" width="49%"/> <img src="https://raw.githubusercontent.com/kfmaurice/zafroshops-media/master/Images/Android/android_3.png" width="49%"/>
