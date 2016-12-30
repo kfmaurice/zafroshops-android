@@ -1,3 +1,8 @@
 language: java
 
 jdk: oraclejdk8
+
+env:
+  global:
+    - ANDROID_HOME=${TRAVIS_BUILD_DIR}/android-sdk
+    - PATH=${ANDROID_HOME}/:${ANDROID_HOME}/tools/:${ANDROID_HOME}/platform-tools/:${PATH}
