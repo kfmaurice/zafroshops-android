@@ -12,4 +12,4 @@ env:
     - PATH=${ANDROID_HOME}/:${ANDROID_HOME}/tools/:${ANDROID_HOME}/platform-tools/:${PATH}
 
 before_install:
-  - cp -R /usr/local/android-sdk-24.0.0 ./android-sdk
+  - cp -R /usr/local/android-sdk ./android-sdk
