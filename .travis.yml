@@ -1,8 +1,7 @@
 language: java
 jdk: oraclejdk8
-android:
-  components: 
-    - build-tools-24.0.1
+android: 
+components: - build-tools-24.0.1
 	
 env:
   global:
