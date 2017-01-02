@@ -105,6 +105,17 @@
         \n\nIf you feel, there is a zop you know and which is not referenced here, go to the menu and tap on \"Add a zop\". You\'ll be displayed a form to fill the zop data. Fill up the name and address at least. But, we\'ll be glad if you provide more infos like phone number, opening hours or additional services as these will help app users find the zop more easily.
         \n\nWe wish you a lot of fun with Zafroshops :-)\n
     </string>
+    <string name="privacy_title">Privacy Policy</string>
+    <string name="privacy">This application retrieves your location to provide you with the nearest possible store. Your location is neither shared nor tracked, it is merely saved on your device for later reuse.
+  As long as you have enabled the access to the location, the previously saved location is updated whenever you click any "Refresh location" in the application menu.
+  \n
+  You can disable the access and use of location through the navigation drawer of the application by switching the button "Use my location" to "OFF".
+  \n\n
+  This application also retrieves the email associated with your google account merely to identify you when you purchase an In App Package. This information is whether shared nor saved by the app and serves only verification.
+  \n\n
+  This privacy policy is subject to change and was last updated on january, 2, 2017. If you have any questions, feel free to send an email to info@zafroshops.com.</string>
+    <string name="privacy_text">privacy policy</string>
+
     <string name="help_ok">OK</string>
     <string name="help_title">Help</string>
     <string name="help_toggle">Don\'t show this message again</string>

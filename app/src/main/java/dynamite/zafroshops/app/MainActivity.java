@@ -78,6 +78,7 @@ import java.util.regex.Pattern;
 import dynamite.zafroshops.app.data.MobileZop;
 import dynamite.zafroshops.app.data.ZopType;
 import dynamite.zafroshops.app.fragment.HelpDialogFragment;
+import dynamite.zafroshops.app.fragment.PrivacyPolicyDialogFragment;
 import dynamite.zafroshops.app.iap.IabHelper;
 import dynamite.zafroshops.app.data.FullMobileZop;
 import dynamite.zafroshops.app.data.LocationBase;
@@ -671,6 +672,11 @@ public class MainActivity extends AppCompatActivity
             HelpDialogFragment dialog = new HelpDialogFragment();
             dialog.show(getSupportFragmentManager(), "help");
         }
+    }
+
+    public void openPrivacyPolicyDialog(View view) {
+        PrivacyPolicyDialogFragment dialog = new PrivacyPolicyDialogFragment();
+        dialog.show(getSupportFragmentManager(), "privacy");
     }
 
     private void setDataVersion() {

@@ -84,44 +84,44 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:layout_marginRight="14dp"
-                android:layout_marginBottom="10dp"
-                android:layout_alignParentLeft="true"
-                android:clickable="true"
-                android:onClick="openWebsite"
-                android:background="@android:drawable/list_selector_background"
-                android:layout_above="@id/icon1"
-                android:id="@+id/icon2">
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:paddingLeft="5dp"-->
+                <!--android:paddingRight="5dp"-->
+                <!--android:layout_marginRight="14dp"-->
+                <!--android:layout_marginBottom="10dp"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:clickable="true"-->
+                <!--android:onClick="openWebsite"-->
+                <!--android:background="@android:drawable/list_selector_background"-->
+                <!--android:layout_above="@id/icon1"-->
+                <!--android:id="@+id/icon2">-->
 
-                <ImageView
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:layout_marginLeft="1dp"
-                    android:src="@drawable/logo"
-                    android:id="@+id/zafroshops_img"/>
+                <!--<ImageView-->
+                    <!--android:layout_width="34dp"-->
+                    <!--android:layout_height="34dp"-->
+                    <!--android:layout_marginLeft="1dp"-->
+                    <!--android:src="@drawable/logo"-->
+                    <!--android:id="@+id/zafroshops_img"/>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold"
-                    android:textSize="13dp"
-                    android:paddingTop="1dp"
-                    android:paddingBottom="5dp"
-                    android:paddingLeft="3dp"
-                    android:layout_marginTop="9dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_centerVertical="true"
-                    android:text="@string/website_visit"
-                    android:layout_toRightOf="@id/zafroshops_img"
-                    android:id="@+id/zafroshops_text"/>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:textSize="13dp"-->
+                    <!--android:paddingTop="1dp"-->
+                    <!--android:paddingBottom="5dp"-->
+                    <!--android:paddingLeft="3dp"-->
+                    <!--android:layout_marginTop="9dp"-->
+                    <!--android:layout_marginRight="3dp"-->
+                    <!--android:layout_centerVertical="true"-->
+                    <!--android:text="@string/website_visit"-->
+                    <!--android:layout_toRightOf="@id/zafroshops_img"-->
+                    <!--android:id="@+id/zafroshops_text"/>-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -133,8 +133,8 @@
                 android:clickable="true"
                 android:onClick="emailUs"
                 android:background="@android:drawable/list_selector_background"
-                android:id="@+id/icon3"
-                android:layout_above="@id/icon2">
+                android:layout_above="@id/icon1"
+                android:id="@+id/icon3">
 
                 <ImageView
                     android:layout_width="35dp"
@@ -202,6 +202,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
+                android:paddingTop="2dp"
                 android:layout_marginRight="14dp"
                 android:layout_alignParentLeft="true"
                 android:clickable="true"
@@ -213,7 +214,7 @@
                 <ImageView
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:src="@android:drawable/ic_menu_help"
+                    android:src="@android:drawable/ic_dialog_info"
                     android:id="@+id/help_img"/>
 
                 <TextView
@@ -231,6 +232,44 @@
                     android:text="@string/help_text"
                     android:layout_toRightOf="@id/email_img"
                     android:id="@+id/help_text"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_marginRight="14dp"
+                android:layout_alignParentLeft="true"
+                android:clickable="true"
+                android:onClick="openPrivacyPolicyDialog"
+                android:background="@android:drawable/list_selector_background"
+                android:id="@+id/icon6"
+                android:layout_above="@id/icon5">
+
+                <ImageView
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_marginLeft="1dp"
+                    android:src="@drawable/logo"
+                    android:id="@+id/privacy_img"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:textSize="13dp"
+                    android:paddingTop="1dp"
+                    android:paddingLeft="3dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_centerVertical="true"
+                    android:text="@string/privacy_text"
+                    android:layout_toRightOf="@id/email_img"
+                    android:id="@+id/privacy_text"/>
 
             </LinearLayout>
 
