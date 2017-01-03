@@ -5,6 +5,7 @@
     <string name="title_section2">Add a Zop</string>
     <string name="title_section3">Refresh Location</string>
     <string name="title_section4">Remove Ads</string>
+    <string name="title_section5">Nearest</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

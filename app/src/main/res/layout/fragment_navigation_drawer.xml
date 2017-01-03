@@ -212,8 +212,8 @@
                 android:layout_above="@id/icon4">
 
                 <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:src="@android:drawable/ic_dialog_info"
                     android:id="@+id/help_img"/>
 

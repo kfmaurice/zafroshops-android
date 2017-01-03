@@ -78,6 +78,7 @@ import java.util.regex.Pattern;
 import dynamite.zafroshops.app.data.MobileZop;
 import dynamite.zafroshops.app.data.ZopType;
 import dynamite.zafroshops.app.fragment.HelpDialogFragment;
+import dynamite.zafroshops.app.fragment.NearestZopsFragment;
 import dynamite.zafroshops.app.fragment.PrivacyPolicyDialogFragment;
 import dynamite.zafroshops.app.iap.IabHelper;
 import dynamite.zafroshops.app.data.FullMobileZop;
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity
     private ProgressDialog upgradeDialog;
     private IabHelper inAppHelper;
     private static final int REQUEST_IAP_ADS = 1011;
+    private static final int NEAREST_COUNT = 5;
 
     public static String EXTRA_ID = "id";
 
@@ -170,7 +172,8 @@ public class MainActivity extends AppCompatActivity
         EXTRA_ID = getApplicationContext().getPackageName() + ".id";
         titles = new CharSequence[]{
                 getString(R.string.title_section1),
-                getString(R.string.title_section2)
+                getString(R.string.title_section2),
+                getString(R.string.title_section5)
         };
         mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         NewZopOpenings = new ArrayList();
@@ -401,7 +404,11 @@ public class MainActivity extends AppCompatActivity
                 nextMenu(addZopFragment, addToStack, 1);
                 break;
 
-//            case 2: // login
+            case 2: // nearest
+                nextMenu(NearestZopsFragment.newInstance(NEAREST_COUNT), addToStack, 1);
+                break;
+
+//            case 3: // login
 //                break;
         }
     }
@@ -701,6 +708,12 @@ public class MainActivity extends AppCompatActivity
         getLocation(true);
         getAddress(true);
         nextMenu(TypedZopsFragment.newInstance(TypedZopsFragment.zopType, true), false, 1);
+    }
+
+    public void refreshNearest(){
+        getLocation(true);
+        getAddress(true);
+        nextMenu(NearestZopsFragment.newInstance(NEAREST_COUNT), false, 1);
     }
 
     @Override
